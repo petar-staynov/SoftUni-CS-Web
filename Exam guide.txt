@@ -1,0 +1,53 @@
+1.Create project
+Apps Folder -> Project.App 
+
+2.Create directory structure:
+Data
+Models
+EntityConfiguration
+Services
+Contracts
+Views
+Resources
+Controllers
+Domain
+
+3.Install NuGet:
+Microsoft.EntityFrameworkCore
+Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.EntityFrameworkCore.Design
+
+4.DbContext
+OnConfiguring
+
+5.Create Models
+enums are a separate model
+add DbSets to context
+create migration
+powershel ->  dotnet ef migrations add Initial -> dotnet ef database update
+
+6.Create Controllers
+Naming scheme:
+route="/Home/Index"
+folder: Views/Home/index.html
+ControllerName: HomeController
+Method name: Index
+
+7.Create Html pages
+Create Shared folder in Views which contains _Layout.html and _Error.html
+Make sure href routes are with capital letters
+
+8.Create ViewModels
+make sure ViewModel properties are with same name as form name attributes
+
+9.Create service
+create both interface and class instance
+inject service in Startup class from ConfigureServices method
+
+10.For data visualisation use @Model
+Create ViewModels
+Create DisplayTemplates in Shared for the html of each Displaymodel
+Display template name is "XViewModel"DisplayTemplate.html where the name of the display model is XDisplayModel.cs
+ViewModels can have a collection of other view models. Each view model is mapped to a 
+
+11.Create Binding Models for posting data
