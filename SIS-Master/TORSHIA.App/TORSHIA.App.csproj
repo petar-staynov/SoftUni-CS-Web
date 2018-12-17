@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <StartupObject></StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SIS.Framework\SIS.Framework.csproj" />
+    <ProjectReference Include="..\TORSHIA.Common\TORSHIA.Common.csproj" />
+    <ProjectReference Include="..\TORSHIA.Data\TORSHIA.Data.csproj" />
+    <ProjectReference Include="..\TORSHIA.Domain\TORSHIA.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

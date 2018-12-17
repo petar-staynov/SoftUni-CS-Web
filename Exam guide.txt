@@ -1,35 +1,57 @@
-1.Create project
-Apps Folder -> Project.App 
+Create project structure:
+APPNAME.App
+APPNAME.Common
+APPNAME.Data
+APPNAME.Domain
+APPNAME.Services
 
-2.Create directory structure:
-Data
-Models
-EntityConfiguration
-Services
-Contracts
-Views
-Resources
-Controllers
-Domain
+Create App.cs and rename program to Startup
+Add reference to framework. App inherits MvcApplciation
 
-3.Install NuGet:
-Microsoft.EntityFrameworkCore
-Microsoft.EntityFrameworkCore.SqlServer
-Microsoft.EntityFrameworkCore.Design
+Install NuGet to Data project:
+Install-Package Microsoft.EntityFrameworkCore
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+Install-Package Microsoft.EntityFrameworkCore.Design
 
-4.DbContext
-OnConfiguring
+Create context class in Data folder which inherits : DbContext
+ovveride OnConfiguring
 
-5.Create Models
-enums are a separate model
-add DbSets to context
+Create Models
+enums are in separate folder. Try to sue separate models instead of enums
+
+create DbSets in context
+Context class example:
+
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(Connection.ConnectionConfig());
+            Console.WriteLine(Connection.ConnectionConfig());
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TaskSectors>().HasKey(ts => new {ts.TaskId, ts.SectorId});
+            modelBuilder.Entity<TaskParticipants>().HasKey(tp => new {tp.TaskId, tp.ParticipantId});
+
+            base.OnModelCreating(modelBuilder);
+        }
+		public DbSet<User> Users { get; set; }
+
+Inject dbContext 
+            dependencyContainer.RegisterDependency<TorshiaContext, TorshiaContext>();
+
+
 create migration
 powershel ->  dotnet ef migrations add Initial -> dotnet ef database update
 
-6.Create Controllers
+add _Layout.html in shared views
+
+
+Create Controllers
 Naming scheme:
 route="/Home/Index"
-folder: Views/Home/index.html
+folder: App/Views/Home/Index.html
 ControllerName: HomeController
 Method name: Index
 
@@ -37,17 +59,27 @@ Method name: Index
 Create Shared folder in Views which contains _Layout.html and _Error.html
 Make sure href routes are with capital letters
 
-8.Create ViewModels
+/tasks/report?id=@Model.Id
+8.Create Binding models for forms in Common\Models\Binding
 make sure ViewModel properties are with same name as form name attributes
 
-9.Create service
-create both interface and class instance
+9.Create service is Services/Services
+create both interface and class
 inject service in Startup class from ConfigureServices method
+            dependencyContainer.RegisterDependency<TorshiaContext, TorshiaContext>();
 
-10.For data visualisation use @Model
-Create ViewModels
-Create DisplayTemplates in Shared for the html of each Displaymodel
-Display template name is "XViewModel"DisplayTemplate.html where the name of the display model is XDisplayModel.cs
-ViewModels can have a collection of other view models. Each view model is mapped to a 
 
-11.Create Binding Models for posting data
+10.Visualizing data example
+Make Controlle Method - All
+List(TaskAllViewModel) taskAllViewModels = new List
+var allTasks = context.Tasks.Include(t=>t.User).Toarray();
+    foreach task in allTasks make TaskAllViewModel
+    make new TaskAllViewModel taskViewModel = task.id, task.Name etc
+    add to list taskAllViewModels
+this.Model["Tasks"] = taskAllViewModels (the list)
+
+How classes look:
+    TaskAllViewModel = prop Id, prop Name etc
+    TaskAllViewModelDisplayTemplate = @Model.Id, @Model.Name etc
+
+11.Fix security
