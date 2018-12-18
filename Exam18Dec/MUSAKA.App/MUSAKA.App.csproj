@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <StartupObject>MUSAKA.App.StartUp</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MUSAKA.Common\MUSAKA.Common.csproj" />
+    <ProjectReference Include="..\MUSAKA.Data\MUSAKA.Data.csproj" />
+    <ProjectReference Include="..\MUSAKA.Domain\MUSAKA.Domain.csproj" />
+    <ProjectReference Include="..\SIS.Framework\SIS.Framework.csproj" />
+  </ItemGroup>
+
+</Project>

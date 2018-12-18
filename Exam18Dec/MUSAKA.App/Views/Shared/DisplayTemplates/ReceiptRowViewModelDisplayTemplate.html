@@ -1,0 +1,17 @@
+﻿<div class="row mt-1">
+    <div class="col col-4 text-center">
+        <a class="text">@Model.Id</a>
+    </div>
+    <div class="col col-2 text-center">
+        <a class="text">$@Model.Total</a>
+    </div>
+    <div class="col col-2 text-center">
+        <a class="text">@Model.IssuedOn</a>
+    </div>
+    <div class="col col-2 text-center">
+        <a class="text">@Model.Cashier</a>
+    </div>
+    <div class="col col-2">
+        <a href="/receipts/details?id=@Model.Id" class="btn bg-musaca text-white">Details</a>
+    </div>
+</div>

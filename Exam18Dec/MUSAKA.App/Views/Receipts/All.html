@@ -1,0 +1,26 @@
+﻿<div class="text-center">
+    <h1 class="text text-musaca text-center">All Receipts</h1>
+</div>
+<hr class="bg-musaca w-100 hr-2" />
+<div class="border-musaca">
+    <div class="rows mt-1">
+        <div class="row mt-1">
+            <div class="col col-4 text-center">
+                <h4 class="text text-center text-musaca">Id</h4>
+            </div>
+            <div class="col col-2 text-center">
+                <h4 class="text text-musaca">Total</h4>
+            </div>
+            <div class="col col-2 text-center">
+                <h4 class="text text-musaca">Issued On</h4>
+            </div>
+            <div class="col col-2 text-center">
+                <h4 class="text text-musaca">Cashier</h4>
+            </div>
+            <div class="col col-2">
+                <h4 class="text text-musaca">Action</h4>
+            </div>
+        </div>
+        @Model.Collection.Receipts(@Item)
+    </div>
+</div>
